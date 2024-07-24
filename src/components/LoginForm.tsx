@@ -1,6 +1,7 @@
-import { ChangeEvent, useCallback, useState } from 'react'
+import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 
 import { FormValues } from '@/types/signin'
+import { validateLoginForm } from '@/utils/validation'
 
 export default function LoginForm() {
   const [formValues, setFormValues] = useState<FormValues>({
@@ -21,6 +22,9 @@ export default function LoginForm() {
       [e.target.name]: e.target.value,
     }))
   }, [])
+
+  const errors = useMemo(() => validateLoginForm(formValues), [formValues])
+  const canSubmit = Object.keys(errors).length === 0
 
   return (
     <form onSubmit={handleSubmit}>
@@ -45,7 +49,9 @@ export default function LoginForm() {
           required
         />
       </div>
-      <button type="submit">로그인</button>
+      <button type="submit" disabled={canSubmit === false}>
+        로그인
+      </button>
     </form>
   )
 }
