@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 
 import { FormValues } from '@/types/signin'
 import { validateLoginForm } from '@/utils/validation'
+import { Link } from 'react-router-dom'
 
 export default function LoginForm() {
   const [formValues, setFormValues] = useState<FormValues>({
@@ -52,6 +53,11 @@ export default function LoginForm() {
       <button type="submit" disabled={canSubmit === false}>
         로그인
       </button>
+      <div>
+        <p>
+          아직 계정이 없으신가요? <Link to="/signup">회원가입</Link>
+        </p>
+      </div>
     </form>
   )
 }
