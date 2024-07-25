@@ -42,6 +42,7 @@ export default function SignupForm() {
           onChange={handleChange}
           required
         />
+        {errors.email && <p>{errors.email}</p>}
       </div>
       <div>
         <label htmlFor="password">비밀번호</label>
@@ -52,6 +53,7 @@ export default function SignupForm() {
           onChange={handleChange}
           required
         />
+        {errors.password && <p>{errors.password}</p>}
       </div>
       <div>
         <label htmlFor="passwordConfirm">비밀번호 확인</label>
@@ -62,6 +64,7 @@ export default function SignupForm() {
           onChange={handleChange}
           required
         />
+        {errors.passwordConfirm && <p>{errors.passwordConfirm}</p>}
       </div>
       <div>
         <label htmlFor="name">이름</label>
@@ -72,6 +75,7 @@ export default function SignupForm() {
           onChange={handleChange}
           required
         />
+        {errors.name && <p>{errors.name}</p>}
       </div>
 
       <button type="submit" disabled={canSubmit === false}>
