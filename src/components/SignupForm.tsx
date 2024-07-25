@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 
-import { FormValues } from '@/types/signup'
+import { FormValues } from '@/types/auth/signup'
 import { validateSignupForm } from '@/utils/validation'
 import { Link } from 'react-router-dom'
 import { BooleanPartial } from '@/types/common'

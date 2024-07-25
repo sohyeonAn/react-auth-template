@@ -1,5 +1,5 @@
-import { FormValues as LoginFormValues } from '@/types/signin'
-import { FormValues as SignupFormValues } from '@/types/signup'
+import { FormValues as LoginFormValues } from '@/types/auth/signin'
+import { FormValues as SignupFormValues } from '@/types/auth/signup'
 
 export function validateEmail(email: string) {
   const emailValidRegex =
