@@ -5,6 +5,7 @@ const EMAIL_REGEX =
   /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/
 
 const PASSWORD_MIN_LENGTH = 8
+const NAME_MIN_LENGTH = 2
 
 export function validateRegex(value: string, regex: RegExp) {
   return regex.test(value)
@@ -45,8 +46,8 @@ export function validateSignupForm(formValues: SignupFormValues) {
     errors.passwordConfirm = '비밀번호가 일치하지 않습니다'
   }
 
-  if (!validateStringMinLength(formValues.name, 2)) {
-    errors.name = '이름을 2글자 이상 입력해주세요'
+  if (!validateStringMinLength(formValues.name, NAME_MIN_LENGTH)) {
+    errors.name = `이름을 ${NAME_MIN_LENGTH}글자 이상 입력해주세요`
   }
 
   return errors
