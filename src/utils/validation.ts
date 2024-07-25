@@ -1,4 +1,4 @@
-import { FormValues as LoginFormValues } from '@/types/auth/signin'
+import { FormValues as LoginFormValues } from '@/types/auth/login'
 import { FormValues as SignupFormValues } from '@/types/auth/signup'
 
 export function validateEmail(email: string) {

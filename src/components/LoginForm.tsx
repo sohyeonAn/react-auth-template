@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 
-import { FormValues } from '@/types/auth/signin'
+import { FormValues } from '@/types/auth/login'
 import { validateLoginForm } from '@/utils/validation'
 import { Link } from 'react-router-dom'
 
