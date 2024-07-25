@@ -3,6 +3,7 @@ import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { FormValues } from '@/types/signup'
 import { validateSignupForm } from '@/utils/validation'
 import { Link } from 'react-router-dom'
+import { BooleanPartial } from '@/types/common'
 
 export default function SignupForm() {
   const [formValues, setFormValues] = useState<FormValues>({
@@ -12,7 +13,7 @@ export default function SignupForm() {
     name: '',
   })
 
-  const [touched, setTouched] = useState<Partial<FormValues>>({})
+  const [touched, setTouched] = useState<BooleanPartial<FormValues>>({})
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -31,7 +32,7 @@ export default function SignupForm() {
   const handleBlur = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTouched((prevTouched) => ({
       ...prevTouched,
-      [e.target.name]: 'true',
+      [e.target.name]: true,
     }))
   }, [])
 
@@ -52,7 +53,7 @@ export default function SignupForm() {
           onBlur={handleBlur}
           required
         />
-        {Boolean(touched.email) && errors.email && <p>{errors.email}</p>}
+        {touched.email && errors.email && <p>{errors.email}</p>}
       </div>
       <div>
         <label htmlFor="password">비밀번호</label>
@@ -64,9 +65,7 @@ export default function SignupForm() {
           onBlur={handleBlur}
           required
         />
-        {Boolean(touched.password) && errors.password && (
-          <p>{errors.password}</p>
-        )}
+        {touched.password && errors.password && <p>{errors.password}</p>}
       </div>
       <div>
         <label htmlFor="passwordConfirm">비밀번호 확인</label>
@@ -78,7 +77,7 @@ export default function SignupForm() {
           onBlur={handleBlur}
           required
         />
-        {Boolean(touched.passwordConfirm) && errors.passwordConfirm && (
+        {touched.passwordConfirm && errors.passwordConfirm && (
           <p>{errors.passwordConfirm}</p>
         )}
       </div>
@@ -92,7 +91,7 @@ export default function SignupForm() {
           onBlur={handleBlur}
           required
         />
-        {Boolean(touched.name) && errors.name && <p>{errors.name}</p>}
+        {touched.name && errors.name && <p>{errors.name}</p>}
       </div>
 
       <button type="submit" disabled={canSubmit === false}>
