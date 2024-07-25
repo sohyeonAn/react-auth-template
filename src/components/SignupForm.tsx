@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 
 import { FormValues } from '@/types/signup'
-import { validateLoginForm } from '@/utils/validation'
+import { validateSignupForm } from '@/utils/validation'
 import { Link } from 'react-router-dom'
 
 export default function SignupForm() {
@@ -27,7 +27,7 @@ export default function SignupForm() {
   }, [])
 
   //  @TODO: 회원가입 폼 유효성 검사로 변경
-  const errors = useMemo(() => validateLoginForm(formValues), [formValues])
+  const errors = useMemo(() => validateSignupForm(formValues), [formValues])
   const canSubmit = Object.keys(errors).length === 0
 
   return (
