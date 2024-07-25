@@ -12,6 +12,8 @@ export default function SignupForm() {
     name: '',
   })
 
+  const [touched, setTouched] = useState<Partial<FormValues>>({})
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -23,6 +25,13 @@ export default function SignupForm() {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       [e.target.name]: e.target.value,
+    }))
+  }, [])
+
+  const handleBlur = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setTouched((prevTouched) => ({
+      ...prevTouched,
+      [e.target.name]: 'true',
     }))
   }, [])
 
@@ -40,9 +49,10 @@ export default function SignupForm() {
           name="email"
           id="email"
           onChange={handleChange}
+          onBlur={handleBlur}
           required
         />
-        {errors.email && <p>{errors.email}</p>}
+        {Boolean(touched.email) && errors.email && <p>{errors.email}</p>}
       </div>
       <div>
         <label htmlFor="password">비밀번호</label>
@@ -51,9 +61,12 @@ export default function SignupForm() {
           name="password"
           id="password"
           onChange={handleChange}
+          onBlur={handleBlur}
           required
         />
-        {errors.password && <p>{errors.password}</p>}
+        {Boolean(touched.password) && errors.password && (
+          <p>{errors.password}</p>
+        )}
       </div>
       <div>
         <label htmlFor="passwordConfirm">비밀번호 확인</label>
@@ -62,9 +75,12 @@ export default function SignupForm() {
           name="passwordConfirm"
           id="passwordConfirm"
           onChange={handleChange}
+          onBlur={handleBlur}
           required
         />
-        {errors.passwordConfirm && <p>{errors.passwordConfirm}</p>}
+        {Boolean(touched.passwordConfirm) && errors.passwordConfirm && (
+          <p>{errors.passwordConfirm}</p>
+        )}
       </div>
       <div>
         <label htmlFor="name">이름</label>
@@ -73,9 +89,10 @@ export default function SignupForm() {
           name="name"
           id="name"
           onChange={handleChange}
+          onBlur={handleBlur}
           required
         />
-        {errors.name && <p>{errors.name}</p>}
+        {Boolean(touched.name) && errors.name && <p>{errors.name}</p>}
       </div>
 
       <button type="submit" disabled={canSubmit === false}>
