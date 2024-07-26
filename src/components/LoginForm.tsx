@@ -1,6 +1,7 @@
 import { FormValues } from '@/types/auth/login'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { INVALIDATION_MESSAGES, VALIDATION_RULES } from '@/constants/validation'
 
 export default function LoginForm() {
   const {
@@ -24,9 +25,8 @@ export default function LoginForm() {
           id="email"
           {...register('email', {
             pattern: {
-              value:
-                /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/,
-              message: '이메일 형식을 확인해주세요',
+              value: VALIDATION_RULES.email.pattern,
+              message: INVALIDATION_MESSAGES.email.pattern,
             },
             required: true,
           })}
@@ -39,8 +39,8 @@ export default function LoginForm() {
           id="password"
           {...register('password', {
             minLength: {
-              value: 8,
-              message: '비밀번호를 8글자 이상 입력해주세요',
+              value: VALIDATION_RULES.password.minLength,
+              message: INVALIDATION_MESSAGES.password.minLength,
             },
             required: true,
           })}

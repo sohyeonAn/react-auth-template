@@ -1,6 +1,7 @@
 import { FormValues } from '@/types/auth/signup'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { INVALIDATION_MESSAGES, VALIDATION_RULES } from '@/constants/validation'
 
 export default function SignupForm() {
   const {
@@ -25,9 +26,8 @@ export default function SignupForm() {
           id="email"
           {...register('email', {
             pattern: {
-              value:
-                /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/,
-              message: '이메일 형식을 확인해주세요',
+              value: VALIDATION_RULES.email.pattern,
+              message: INVALIDATION_MESSAGES.email.pattern,
             },
             required: true,
           })}
@@ -41,8 +41,8 @@ export default function SignupForm() {
           id="password"
           {...register('password', {
             minLength: {
-              value: 8,
-              message: '비밀번호를 8글자 이상 입력해주세요',
+              value: VALIDATION_RULES.password.minLength,
+              message: INVALIDATION_MESSAGES.password.minLength,
             },
             required: true,
           })}
@@ -56,13 +56,13 @@ export default function SignupForm() {
           id="passwordConfirm"
           {...register('passwordConfirm', {
             minLength: {
-              value: 8,
-              message: '비밀번호를 8글자 이상 입력해주세요',
+              value: VALIDATION_RULES.password.minLength,
+              message: INVALIDATION_MESSAGES.password.minLength,
             },
             validate: (value) => {
               return (
                 value === getValues('password') ||
-                '비밀번호가 일치하지 않습니다'
+                INVALIDATION_MESSAGES.passwordConfirm.match
               )
             },
             required: true,
@@ -77,8 +77,8 @@ export default function SignupForm() {
           id="name"
           {...register('name', {
             minLength: {
-              value: 2,
-              message: '이름을 2글자 이상 입력해주세요',
+              value: VALIDATION_RULES.name.minLength,
+              message: INVALIDATION_MESSAGES.name.minLength,
             },
             required: true,
           })}
